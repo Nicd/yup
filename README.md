@@ -2,7 +2,7 @@
 
 Yup is a JavaScript object schema validator and object parser. The API and style is ~~stolen~~ heavily inspired
 by [Joi](https://github.com/hapijs/joi), which is an amazing library but is generally too large and difficult
-to package for use in a browser. Yup is leaner: in the same spirit, without some of the fancy features.
+to package for use in a browser. Yup is a leaner in the same spirit without some of the fancy features.
 You can use it on the server as well, but in that case you might as well just use Joi.
 
 Yup is also a good bit less opinionated than joi, allowing for custom transformations and async validation.
@@ -44,7 +44,7 @@ json separate from validating it, via the `cast` method.
     - [`mixed.withMutation(builder: (current: Schema) => void): void`](#mixedwithmutationbuilder-current-schema--void-void)
     - [`mixed.default(value: any): Schema`](#mixeddefaultvalue-any-schema)
     - [`mixed.default(): Any`](#mixeddefault-any)
-    - [`mixed.nullable(isNullable: boolean = false): Schema`](#mixednullableisnullable-boolean--false-schema)
+    - [`mixed.nullable(isNullable: boolean = true): Schema`](#mixednullableisnullable-boolean--true-schema)
     - [`mixed.required(message?: string | function): Schema`](#mixedrequiredmessage-string--function-schema)
     - [`mixed.notRequired(): Schema`](#mixednotrequired-schema)
     - [`mixed.typeError(message: string): Schema`](#mixedtypeerrormessage-string-schema)
@@ -161,8 +161,6 @@ schema.cast({
 });
 // => { name: 'jimmy', age: 24, createdOn: Date }
 ```
-
-> If you're looking for an easily serializable DSL for yup schema, check out [yup-ast](https://github.com/WASD-Team/yup-ast)
 
 ### Using a custom locale dictionary
 
@@ -540,7 +538,7 @@ yup.date.default(() => new Date()); //also helpful for defaults that change over
 
 Calling `default` with no arguments will return the current default value
 
-#### `mixed.nullable(isNullable: boolean = false): Schema`
+#### `mixed.nullable(isNullable: boolean = true): Schema`
 
 Indicates that `null` is a valid value for the schema. Without `nullable()`
 `null` is treated as a different type and will fail `isType()` checks.
